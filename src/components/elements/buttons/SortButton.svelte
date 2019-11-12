@@ -1,0 +1,36 @@
+<script context="module">
+    export const SORTING_DIRECTIONS = {
+        ascending: "ascending",
+        decending: "decending"
+    };
+
+    const SORTING_DIRECTION_TEXT = {
+        [SORTING_DIRECTIONS.ascending]: "&uuarr;",
+        [SORTING_DIRECTIONS.decending]: "&ddarr;"
+    };
+</script>
+
+<script>
+    export let order = [SORTING_DIRECTIONS.ascending, SORTING_DIRECTIONS.decending];
+    export let selected = order[0];
+
+    let next;
+
+    $: text = SORTING_DIRECTION_TEXT[selected];
+    $: {
+        const index = order.indexOf(selected) + 1;
+
+        if (index === order.length) next = 0;
+        else next = index;
+    }
+
+    function on_click(event) {
+        event.preventDefault();
+
+        selected = order[next];
+    }
+</script>
+
+<button class="btn btn-primary fw-bold" on:click={on_click}>
+    {@html text}
+</button>
