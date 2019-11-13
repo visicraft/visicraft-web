@@ -1,35 +1,25 @@
-<script context="module">
-    /**
-     * Represents the options available sorting methods to the end-user
-     */
-    const SORTING_DROPDOWN_ITEMS = [
-        {text: "Recently Modified", value: "recent", selected: true},
-        {text: "Alphabetical (A-Z)", value: "alphabetical"}
-    ];
-</script>
-
 <script>
     import {COLUMN_SIZES} from "../../../components/elements/buttons/ColumnButtons.svelte";
     import ContentCard from "../../../components/elements/cards/ContentCard.svelte";
 
     import SearchBar from "../../../components/patterns/searchgrid/SearchBar.svelte";
+    import SearchGrid from "../../../components/patterns/searchgrid/SearchGrid.svelte";
+
+    const items = [
+        {title: "Undead Scourage", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Human Alliance", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Orcish Horde", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Night Elves", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Blood Mage", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Archmage Proudmore", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Shadow Hunter", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Crypt Lord", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Flame Predator", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Succubus Hunter", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
+        {title: "Chameleon", contributors: "Tha Pwned", href: "/races/1/human-alliance"}
+    ];
 
     let column_size;
-    let column_small;
-    let column_medium;
-    let column_large;
-
-    $: {
-        if (column_size === COLUMN_SIZES.small) {
-            column_small = "col-4";
-            column_medium = "col-3-m";
-            column_large = "col-2-l";
-        } else if (column_size === COLUMN_SIZES.medium) {
-            column_small = "col-6";
-            column_medium = "col-4-m";
-            column_large = "col-3-l";
-        }
-    }
 </script>
 
 <svelte:head>
@@ -38,118 +28,16 @@
 
 <article class="article max-w-100">
     <h2>Races Library</h2>
-
+    {column_size}
     <SearchBar bind:column_size />
 
-    <div class="grid max-w-100">
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Undead Scourage"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="race"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Human Alliance"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="shopitem"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Orcish Horde"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="power"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Night Elves"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="race"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Blood Mage"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="race"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Archmage Proudmore"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="race"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Shadow Hunter"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="race"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Crypt Lord"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="race"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Flame Predator"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="race"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Succubus Hunter"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="race"
-                indicator />
-        </div>
-
-        <div class="{column_small} {column_medium} {column_large} d-flex jc-center">
-            <ContentCard
-                class="w-100"
-                title="Chameleon"
-                contributors="Tha Pwned"
-                href="/races/1/human-alliance"
-                type="race"
-                indicator />
-        </div>
-    </div>
+    <SearchGrid let:item {column_size} {items}>
+        <ContentCard
+            class="w-100"
+            contributors={item.contributors}
+            href={item.href}
+            title={item.title}
+            type="race"
+            indicator />
+    </SearchGrid>
 </article>
