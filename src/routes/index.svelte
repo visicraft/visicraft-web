@@ -1,11 +1,17 @@
 <script>
     import NavigationContainer from "../components/patterns/navigation/NavigationContainer.svelte";
-    import NavigationLinks from "../components/patterns/navigation/NavigationLinks.svelte";
+    import NavigationDropdown from "../components/patterns/navigation/NavigationDropdown.svelte";
     import NavigationItems from "../components/patterns/navigation/NavigationItems.svelte";
+    import NavigationLinks from "../components/patterns/navigation/NavigationLinks.svelte";
 
     import InfoCard from "../components/elements/cards/InfoCard.svelte";
 
-    const NAVIGATION_LEFT_LINKS = [{text: "Editor", href: "/editor"}];
+    const NAVIGATION_LEFT_LINKS = [
+        {text: "Home", href: "/editor"},
+        {text: "Races", href: "/editor"},
+        {text: "Shop Items", href: "/editor"},
+        {text: "Powers", href: "/editor"}
+    ];
 
     const NAVIGATION_RIGHT_LINKS = [{text: "GitHub", href: "https://github.com/visicraft"}];
 </script>
@@ -16,7 +22,7 @@
 
 <NavigationContainer title="Visicraft">
     <NavigationItems>
-        <NavigationLinks items={NAVIGATION_LEFT_LINKS} />
+        <NavigationDropdown items={NAVIGATION_LEFT_LINKS} title="Editor" />
     </NavigationItems>
 
     <NavigationItems sub>
@@ -35,7 +41,7 @@
             <a class="link-light" href="https://en.wikipedia.org/wiki/Source_(game_engine)">Source Engine</a>
             modification by
             <a class="link-light" href="https://steamcommunity.com/">Tha Pwned</a>
-            allowing easy content creation.`
+            allowing easy content creation.
             <br class="d-none d-block-m" />
         </p>
     </article>
