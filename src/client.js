@@ -6,6 +6,8 @@ import * as sapper from "@sapper/app";
 
 import {VisicraftClient} from "visicraft-lib";
 
+import "./visicraft.css";
+
 const target = document.querySelector("#sapper");
 target.innerHTML = "LOADING, PLEASE WAIT...";
 

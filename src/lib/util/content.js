@@ -35,12 +35,21 @@ export const CONTENT_COLOR_CLASSES = {
 };
 
 /**
- * Represents the shape classes associated with each content type
+ * Represents the symbol classes associated with each content type
  */
 export const CONTENT_SYMBOL_CLASSES = {
     [CONTENT_TYPES.races]: "vc-symbol-race",
-    [CONTENT_TYPES.powers]: "vc-symbol-power",
-    [CONTENT_TYPES.shopitems]: "vc-symbol-shopitem"
+    [CONTENT_TYPES.powers]: null,
+    [CONTENT_TYPES.shopitems]: null
+};
+
+/**
+ * Represents the symbol HTML Entities associated with each content type
+ */
+export const CONTENT_SYMBOL_ENTITIES = {
+    [CONTENT_TYPES.races]: "&ltcir;",
+    [CONTENT_TYPES.powers]: "&gtcc;",
+    [CONTENT_TYPES.shopitems]: "&ccupssm;"
 };
 
 /**
@@ -51,7 +60,7 @@ export function get_content_name(type, plural = false) {
     const name = lookup[type.toLowerCase()];
 
     if (name) return name;
-    throw new Error(`bad change to 'get_content_name' (content type '${type}' not supported`);
+    throw new Error(`bad dispatch to 'get_content_name' (content type '${type}' not supported`);
 }
 
 /**
@@ -61,15 +70,26 @@ export function get_content_color_class(type) {
     const color = CONTENT_COLOR_CLASSES[type.toLowerCase()];
 
     if (color) return color;
-    throw new Error(`bad change to 'get_content_color_class' (content type '${type}' not supported`);
+    throw new Error(`bad dispatch to 'get_content_color_class' (content type '${type}' not supported`);
 }
 
 /**
  * Returns the CSS shape class associated with the content type, throwing an exception missing content types
  */
 export function get_content_symbol_class(type) {
-    const shape = CONTENT_SYMBOL_CLASSES[type.toLowerCase()];
+    const _class = CONTENT_SYMBOL_CLASSES[type.toLowerCase()];
 
-    if (shape) return shape;
-    throw new Error(`bad change to 'get_content_symbol_class' (content type '${type}' not supported`);
+    if (_class === null) return "";
+    if (_class) return _class;
+    throw new Error(`bad dispatch to 'get_content_symbol_class' (content type '${type}' not supported`);
+}
+
+/**
+ * Returns the CSS shape class associated with the content type, throwing an exception missing content types
+ */
+export function get_content_symbol_entity(type) {
+    const entity = CONTENT_SYMBOL_ENTITIES[type.toLowerCase()];
+
+    if (entity) return entity;
+    throw new Error(`bad dispatch to 'get_content_symbol_entity' (content type '${type}' not supported`);
 }

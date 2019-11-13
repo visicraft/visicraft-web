@@ -1,12 +1,13 @@
 <script>
-    import ContentIndicator from "../ContentIndicator.svelte";
+    import ContentIcon from "../icons/ContentIcon.svelte";
 
     let _class = "";
     export let style = "";
 
     export let contributors = "N/A";
     export let href = "#";
-    export let indicator = "";
+    export let indicator = false;
+    export let type = "";
     export let title = "N/A";
 
     export {_class as class};
@@ -18,8 +19,10 @@
             <div class="bc-secondary">&nbsp;</div>
         </picture>
 
-        {#if indicator}
-            <ContentIndicator class="abs-t abs-r pt-tiny pr-tiny" type={indicator} icon />
+        {#if indicator && type}
+            <div class="abs-t abs-r pr-tiny">
+                <ContentIcon class="p-none h2 display vc-outline" {type} color />
+            </div>
         {/if}
     </figure>
 

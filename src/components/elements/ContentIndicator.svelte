@@ -70,25 +70,6 @@
         text-transform: uppercase;
     }
 
-    a.vc-content-indicator,
-    a.vc-content-indicator-tiny,
-    a.vc-content-indicator-small,
-    a.vc-content-indicator-medium,
-    a.vc-content-indicator-large {
-        text-decoration: none;
-
-        filter: saturate(1) opacity(100%);
-        transition: filter 0.1s;
-    }
-
-    a.vc-content-indicator:hover,
-    a.vc-content-indicator-tiny:hover,
-    a.vc-content-indicator-small:hover,
-    a.vc-content-indicator-medium:hover,
-    a.vc-content-indicator-large:hover {
-        filter: saturate(0.85) opacity(25%);
-    }
-
     .vc-content-indicator {
         height: 19px;
 
@@ -164,7 +145,7 @@
 </style>
 
 {#if href}
-    <a {href} class="{size_class} ai-center {_class}">
+    <a class="{size_class} ai-center link-fade {_class}" {href}>
         {#if brackets}
             <span class="vc-content-indicator-bracket">&llcorner;</span>
         {/if}
