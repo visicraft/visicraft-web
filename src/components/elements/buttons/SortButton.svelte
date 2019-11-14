@@ -1,8 +1,5 @@
 <script context="module">
-    export const SORTING_DIRECTIONS = {
-        ascending: "ascending",
-        decending: "decending"
-    };
+    import {SORTING_DIRECTIONS} from "../../../lib/util/constants";
 
     const SORTING_DIRECTION_TEXT = {
         [SORTING_DIRECTIONS.ascending]: "&uuarr;",
