@@ -2,9 +2,9 @@
  * Represents the supported content types for indicating
  */
 export const CONTENT_TYPES = {
-    powers: "power",
-    races: "race",
-    shopitems: "shopitem"
+    powers: "TYPE_POWER",
+    races: "TYPE_RACE",
+    shopitems: "TYPE_SHOPITEMS"
 };
 
 /**
@@ -57,7 +57,7 @@ export const CONTENT_SYMBOL_ENTITIES = {
  */
 export function get_content_name(type, plural = false) {
     const lookup = plural ? CONTENT_PLURAL_NAMES : CONTENT_DISPLAY_NAMES;
-    const name = lookup[type.toLowerCase()];
+    const name = lookup[type];
 
     if (name) return name;
     throw new Error(`bad dispatch to 'get_content_name' (content type '${type}' not supported`);
@@ -67,7 +67,7 @@ export function get_content_name(type, plural = false) {
  * Returns the CSS color class associated with the content type, throwing an exception missing content types
  */
 export function get_content_color_class(type) {
-    const color = CONTENT_COLOR_CLASSES[type.toLowerCase()];
+    const color = CONTENT_COLOR_CLASSES[type];
 
     if (color) return color;
     throw new Error(`bad dispatch to 'get_content_color_class' (content type '${type}' not supported`);
@@ -77,7 +77,7 @@ export function get_content_color_class(type) {
  * Returns the CSS shape class associated with the content type, throwing an exception missing content types
  */
 export function get_content_symbol_class(type) {
-    const _class = CONTENT_SYMBOL_CLASSES[type.toLowerCase()];
+    const _class = CONTENT_SYMBOL_CLASSES[type];
 
     if (_class === null) return "";
     if (_class) return _class;
@@ -88,7 +88,7 @@ export function get_content_symbol_class(type) {
  * Returns the CSS shape class associated with the content type, throwing an exception missing content types
  */
 export function get_content_symbol_entity(type) {
-    const entity = CONTENT_SYMBOL_ENTITIES[type.toLowerCase()];
+    const entity = CONTENT_SYMBOL_ENTITIES[type];
 
     if (entity) return entity;
     throw new Error(`bad dispatch to 'get_content_symbol_entity' (content type '${type}' not supported`);

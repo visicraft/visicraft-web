@@ -5,6 +5,8 @@
     import SearchBar from "../../../components/patterns/searchgrid/SearchBar.svelte";
     import SearchGrid from "../../../components/patterns/searchgrid/SearchGrid.svelte";
 
+    import {get_races} from "../../../lib/stores/races";
+
     const items = [
         {title: "Undead Scourage", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
         {title: "Human Alliance", contributors: "Tha Pwned", href: "/races/1/human-alliance"},
@@ -20,6 +22,7 @@
     ];
 
     let column_size;
+    const races = get_races("DIRECTION_ASCEND", "MODE_ALPHABETICAL");
 </script>
 
 <svelte:head>
@@ -37,7 +40,8 @@
             contributors={item.contributors}
             href={item.href}
             title={item.title}
-            type="race"
+            type="TYPE_RACE"
             indicator />
     </SearchGrid>
 </article>
+{JSON.stringify($races)}
