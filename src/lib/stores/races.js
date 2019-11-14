@@ -1,13 +1,14 @@
 import {readable} from "svelte/store";
 
 import {SORTING_DIRECTIONS, SORTING_MODES} from "../util/constants";
+import {escape_regex} from "../util/string";
 
 /**
  * Returns a readable Svelte store, with an automatically updating view of the stored Races
  * @param {*} sorting_direction
  * @param {*} sorting_mode
  */
-export function get_races(sorting_direction, sorting_mode) {
+export function get_races(sorting_direction, sorting_mode, filter = "") {
     return readable([], (set) => {
         if (!process.browser) return;
 
@@ -27,6 +28,21 @@ export function get_races(sorting_direction, sorting_mode) {
         } else if (sorting_mode === SORTING_MODES.recent) {
             observable = observable.sort(sorting_symbol + "identifier");
         } else throw new Error(`bad dispatch to 'get_races' (bad sorting mode ${sorting_mode})`);
+
+        if (filter) {
+            // Allow end-users to filter via full-text search on the title and contributors, ignoring letter casing
+            filter = escape_regex(filter);
+            const regex = new RegExp(filter, "i");
+
+            observable = observable.or([
+                {
+                    title: {$regex: regex}
+                },
+                {
+                    contributors: {$regex: regex}
+                }
+            ]);
+        }
 
         observable = observable.$.subscribe(set);
     });
