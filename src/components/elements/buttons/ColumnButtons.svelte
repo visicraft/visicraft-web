@@ -26,7 +26,15 @@
 <script>
     import RadioButtons from "./RadioButtons.svelte";
 
-    export let selected = COLUMN_SIZES.large;
+    let _class = "";
+    export let style = "";
+
+    export let color = "primary";
+    export let name = "radio_buttons";
+
+    export let value = COLUMN_SIZES.medium;
+
+    export {_class as class};
 </script>
 
-<RadioButtons items={COLUMN_BUTTON_ITEMS} bind:value={selected} {...$$props} />
+<RadioButtons class={_class} items={COLUMN_BUTTON_ITEMS} {color} {name} {style} bind:value />

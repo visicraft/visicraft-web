@@ -12,13 +12,13 @@
 
 <script>
     export let order = [SORTING_DIRECTIONS.ascending, SORTING_DIRECTIONS.decending];
-    export let selected = order[0];
+    export let value = order[0];
 
     let next;
 
-    $: text = SORTING_DIRECTION_TEXT[selected];
+    $: text = SORTING_DIRECTION_TEXT[value];
     $: {
-        const index = order.indexOf(selected) + 1;
+        const index = order.indexOf(value) + 1;
 
         if (index === order.length) next = 0;
         else next = index;
@@ -27,7 +27,7 @@
     function on_click(event) {
         event.preventDefault();
 
-        selected = order[next];
+        value = order[next];
     }
 </script>
 

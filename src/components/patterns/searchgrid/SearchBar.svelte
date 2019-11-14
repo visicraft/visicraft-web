@@ -20,13 +20,13 @@
 </script>
 
 <div class="modal p-tiny search-bar mx-small of-visible">
-    <Dropdown items={SORTING_DROPDOWN_ITEMS} placeholder="...select a sorting method" bind:sorting />
+    <Dropdown items={SORTING_DROPDOWN_ITEMS} placeholder="...select a sorting method" bind:value={sorting} />
 
     <div class="fm fm-text">
         <input type="search" name="keywords" placeholder="...enter filter" bind:value={filter} />
     </div>
 
-    <ColumnButtons color="hollow-primary" bind:selected={column_size} />
+    <ColumnButtons color="hollow-primary" bind:value={column_size} />
 
-    <SortButton bind:selection={sorting_direction} />
+    <SortButton bind:value={sorting_direction} />
 </div>
