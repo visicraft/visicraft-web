@@ -4,13 +4,15 @@ import "luda/dist/js/luda";
 
 import * as sapper from "@sapper/app";
 
+import "./visicraft.css";
+
 const target = document.querySelector("#sapper");
 target.innerHTML = "LOADING, PLEASE WAIT...";
 
 (async function() {
     window.client = new visicraft.VisicraftClient({
         datastore: {
-            adapter: "idb"
+            adapter: "memory"
         }
     });
 
