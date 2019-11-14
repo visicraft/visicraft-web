@@ -28,7 +28,7 @@
 
 <article class="article max-w-100">
     <h2>Races Library</h2>
-    {column_size}
+
     <SearchBar bind:column_size />
 
     <SearchGrid let:item {column_size} {items}>
