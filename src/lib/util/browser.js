@@ -16,7 +16,7 @@ export function update_query_string(query_params) {
     for (const key in query_params) {
         const value = query_params[key];
 
-        if (typeof value === "undefined") search.delete(key);
+        if (typeof value === "undefined" || value === "") search.delete(key);
         else search.set(key, value.toString());
     }
 

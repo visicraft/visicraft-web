@@ -19,6 +19,20 @@ This is the web front-end to the [Visicraft Editor Webapp](https://visicraft.exa
 
 -   Coming Soon
 
+## Developer
+
+### Installation
+
+-   Coming Soon
+
+### Deployment
+
+-   Coming Soon
+
+## Developer Integration
+
+-   Coming Soon
+
 ## Tech Stack
 
 -   Coming Soon
