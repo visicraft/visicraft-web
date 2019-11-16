@@ -1,5 +1,6 @@
 <script>
     let _class = "";
+    export let style = "";
 
     export let aside = false;
     export let title = "";
@@ -9,18 +10,18 @@
 </script>
 
 {#if aside}
-    <aside class="nav-aside">
+    <aside class="nav-aside {_class}" {style}>
         {#if title}
             <a class="nav-logo link-light td-none" href={title_href}>
                 <h1>{title}</h1>
             </a>
         {/if}
 
-        <button class="nav-open btn btn-ico btn-text-light" data-toggle-for="navigation-menu">
+        <button class="nav-open btn btn-ico btn-text-light" data-toggle-for="navigation_menu">
             <i class="ico ico-menu" />
         </button>
 
-        <div class="nav-menu" data-toggle-target="navigation-menu">
+        <div class="nav-menu" data-toggle-target="navigation_menu">
             <button class="nav-close btn btn-ico btn-text-light" data-toggle>
                 <i class="ico ico-cross" />
             </button>
@@ -29,7 +30,7 @@
         </div>
     </aside>
 {:else}
-    <header class="nav-header">
+    <header class="nav-header {_class}" {style}>
         {#if title}
             <a class="nav-logo link-light td-none" href={title_href}>
                 <h1>{title}</h1>
