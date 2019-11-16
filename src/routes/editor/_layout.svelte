@@ -26,8 +26,43 @@
     });
 </script>
 
+<style>
+    @keyframes loading-glow {
+        0% {
+            opacity: 0.15;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0.15;
+        }
+    }
+
+    .progress {
+        padding-left: 15%;
+        padding-right: 15%;
+
+        background-color: transparent;
+        height: 1rem;
+
+        animation: loading-glow 2.5s infinite cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+</style>
+
 {#await _client}
-    LOADING...
+    <div class="d-flex ai-center min-w-100vw min-h-100vh ta-center c-light bc-dark">
+        <div class="w-100">
+            <h1 class="display mb-medium">LOADING...</h1>
+
+            <div class="progress">
+                <div class="progress-bar bc-primary w-25">&nbsp;</div>
+                <div class="progress-bar bc-secondary w-25">&nbsp;</div>
+                <div class="progress-bar bc-danger w-25">&nbsp;</div>
+                <div class="progress-bar bc-light w-25">&nbsp;</div>
+            </div>
+        </div>
+    </div>
 {:then _}
     <div class="grid-edge">
         <NavigationContainer title="Editor" title_href="/editor" aside>
