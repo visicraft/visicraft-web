@@ -61,7 +61,7 @@
             <a class="btn btn-hollow-light btn-large" href="/editor">Use Editor</a>
         </p>
 
-        <figure class="media rel w-75">
+        <figure class="media rel w-75 sd-high">
             <picture class="media-content">
                 <div class="bc-secondary">&nbsp;</div>
             </picture>
