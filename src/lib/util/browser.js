@@ -1,3 +1,6 @@
+/**
+ * Returns a object<string, string> of the current query parameters of the Browser
+ */
 export function get_query_string() {
     const search = new URLSearchParams(location.search);
     const ret = {};

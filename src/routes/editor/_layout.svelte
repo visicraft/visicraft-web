@@ -1,10 +1,12 @@
 <script>
+    import * as sapper from "@sapper/app";
     import {onMount} from "svelte";
 
     import NavigationContainer from "../../components/patterns/navigation/NavigationContainer.svelte";
     import NavigationLinks from "../../components/patterns/navigation/NavigationLinks.svelte";
     import NavigationItems from "../../components/patterns/navigation/NavigationItems.svelte";
 
+    import {get_query_string} from "../../lib/util/browser";
     import {initialize_client} from "../../lib/util/visicraft";
 
     const NAVIGATION_MAIN_LINKS = [
@@ -20,9 +22,18 @@
     const NAVIGATION_POWERS_LINKS = [{text: "Library", href: "/editor/powers"}];
 
     let _client;
+    const is_browser = process.browser;
 
-    onMount(() => {
-        if (!window._vc_client) _client = initialize_client();
+    onMount(async () => {
+        if (!window._vc_client) {
+            _client = initialize_client();
+
+            const params = get_query_string();
+            if (params.ret) {
+                await _client;
+                sapper.goto(params.ret);
+            }
+        }
     });
 </script>
 
@@ -84,7 +95,9 @@
         </NavigationContainer>
 
         <main class="container col-auto px-large">
-            <slot />
+            {#if is_browser}
+                <slot />
+            {/if}
         </main>
     </div>
 {:catch err}

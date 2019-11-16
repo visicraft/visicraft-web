@@ -8,7 +8,11 @@
     import {bind_query_parameter} from "../../../lib/stores/browser";
     import {bind_localstorage} from "../../../lib/stores/localstorage";
     import {get_races} from "../../../lib/stores/races";
+
     import {SORTING_DIRECTIONS, SORTING_MODES} from "../../../lib/util/constants";
+    import {check_client} from "../../../lib/util/visicraft";
+
+    if (process.browser) check_client();
 
     const column_size = bind_localstorage("column_size", COLUMN_SIZES.medium);
     const filter = bind_query_parameter("filter", "");

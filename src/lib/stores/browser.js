@@ -1,4 +1,4 @@
-import {writable} from "svelte/store";
+import {readable, writable} from "svelte/store";
 
 import {get_query_string, update_query_string} from "../util/browser";
 
@@ -9,6 +9,8 @@ import {get_query_string, update_query_string} from "../util/browser";
  * @param {*} default_value
  */
 export function bind_query_parameter(property_name, default_value) {
+    if (!process.browser) return readable(default_value);
+
     const params = get_query_string();
     const value = params[property_name] ? params[property_name] : default_value;
     const store = writable(value);

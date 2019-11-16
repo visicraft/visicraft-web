@@ -1,16 +1,31 @@
+import * as sapper from "@sapper/app";
+
+/**
+ * Checks if the `visicraft.VisicraftClient` instance singleton is available, if not, redirects to splash screen
+ * @param {*} url
+ */
+export function check_client(url = null) {
+    if (!process.browser || typeof window._vc_client !== "undefined") return;
+
+    if (!url) url = `${location.pathname}${location.search}`;
+    sapper.goto(`/editor?ret=${url}`);
+}
+
 /**
  * Returns the `visicraft.VisicraftClient` instance singleton, if available, otherwise exception thrown
  */
 export function get_client() {
     if (window._vc_client) return window._vc_client;
 
-    throw new Error("bad dispatch to 'get_client' ('window.client' was not available)");
+    throw new Error("bad dispatch to 'get_client' ('window._vc_client' was not available)");
 }
 
 /**
  * Initializes a new `visicraft.VisicraftClient` singleton, with the build-time configuration
  */
 export async function initialize_client() {
+    if (!process.browser) return new Promise(() => {});
+
     const client = new visicraft.VisicraftClient({
         datastore: {
             adapter: "memory"
@@ -25,7 +40,8 @@ export async function initialize_client() {
 
 if (typeof window !== "undefined") {
     window._debug_init_dummy = () => {
-        const {races} = get_client().datastore;
+        const client = get_client();
+        const {races} = client.datastore;
 
         const data = [
             {

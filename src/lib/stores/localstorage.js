@@ -1,4 +1,4 @@
-import {writable} from "svelte/store";
+import {readable, writable} from "svelte/store";
 
 /**
  * Returns a writable Svelte Store that updates a `localStorage` key with the `JSON.stringify` value
@@ -6,6 +6,8 @@ import {writable} from "svelte/store";
  * @param {*} default_value
  */
 export function bind_localstorage(key, default_value) {
+    if (!process.browser) return readable(default_value);
+
     key = `visicraft-v1:${key}`;
 
     const value = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : default_value;

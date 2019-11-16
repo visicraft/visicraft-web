@@ -7,9 +7,9 @@ import {get_client} from "../util/visicraft";
  * @param {*} options
  */
 export function get_races(options) {
-    return readable([], (set) => {
-        if (!process.browser) return;
+    if (!process.browser) return readable([]);
 
+    return readable([], (set) => {
         const client = get_client();
         const {races} = client.datastore;
         const query = races.query_races(options);
