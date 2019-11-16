@@ -53,7 +53,7 @@
             <!-- HACK: prettier kept formatting line breaks at punctuation... so we're doing raw HTML instead -->
             {@html `Visicraft is a visual content creation tool for <a class="link-light" href="https://github.com/ThaPwned/WCS">Warcraft-Source</a>,`}
             <br class="d-none d-block-m" />
-            {@html `which is a <a class="link-light" href="https://en.wikipedia.org/wiki/Source_(game_engine)">Source Engine</a> modification by <a class="link-light" href="https://steamcommunity.com/">Tha Pwned</a>.`}
+            {@html `which is a <a class="link-light" href="https://en.wikipedia.org/wiki/Source_(game_engine)">Source Engine</a> modification by <a class="link-light" href="https://github.com/ThaPwned">Tha Pwned</a>.`}
         </p>
 
         <p class="col-12 px-small">
