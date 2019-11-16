@@ -4,7 +4,7 @@
 export const CONTENT_TYPES = {
     powers: "TYPE_POWER",
     races: "TYPE_RACE",
-    shopitems: "TYPE_SHOPITEMS"
+    shopitems: "TYPE_SHOPITEM"
 };
 
 /**
@@ -60,7 +60,7 @@ export function get_content_name(type, plural = false) {
     const name = lookup[type];
 
     if (name) return name;
-    throw new Error(`bad dispatch to 'get_content_name' (content type '${type}' not supported`);
+    throw new Error(`bad dispatch to 'get_content_name' (content type '${type}' not supported)`);
 }
 
 /**
@@ -70,7 +70,7 @@ export function get_content_color_class(type) {
     const color = CONTENT_COLOR_CLASSES[type];
 
     if (color) return color;
-    throw new Error(`bad dispatch to 'get_content_color_class' (content type '${type}' not supported`);
+    throw new Error(`bad dispatch to 'get_content_color_class' (content type '${type}' not supported)`);
 }
 
 /**
@@ -81,7 +81,7 @@ export function get_content_symbol_class(type) {
 
     if (_class === null) return "";
     if (_class) return _class;
-    throw new Error(`bad dispatch to 'get_content_symbol_class' (content type '${type}' not supported`);
+    throw new Error(`bad dispatch to 'get_content_symbol_class' (content type '${type}' not supported)`);
 }
 
 /**
@@ -91,5 +91,5 @@ export function get_content_symbol_entity(type) {
     const entity = CONTENT_SYMBOL_ENTITIES[type];
 
     if (entity) return entity;
-    throw new Error(`bad dispatch to 'get_content_symbol_entity' (content type '${type}' not supported`);
+    throw new Error(`bad dispatch to 'get_content_symbol_entity' (content type '${type}' not supported)`);
 }

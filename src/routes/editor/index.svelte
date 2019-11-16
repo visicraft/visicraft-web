@@ -11,15 +11,15 @@
 
     <div class="grid">
         <div class="col-12 col-6-m col-4-l mb-small">
-            <IndicatorCard type="power" href="/editor/powers" icon plural />
+            <IndicatorCard type="TYPE_POWER" href="/editor/powers" icon plural />
         </div>
 
         <div class="col-12 col-6-m col-4-l mb-small">
-            <IndicatorCard type="race" href="/editor/races" icon plural />
+            <IndicatorCard type="TYPE_RACE" href="/editor/races" icon plural />
         </div>
 
         <div class="col-12 col-6-m col-4-l mb-small">
-            <IndicatorCard type="shopitem" href="/editor/shopitems" icon plural />
+            <IndicatorCard type="TYPE_SHOPITEM" href="/editor/shopitems" icon plural />
         </div>
     </div>
 </article>
