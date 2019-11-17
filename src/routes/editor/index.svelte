@@ -1,5 +1,6 @@
 <script>
     import IndicatorCard from "../../components/elements/cards/IndicatorCard.svelte";
+    import BreadcrumbLinks from "../../components/patterns/breadcrumb/BreadcrumbLinks.svelte";
 </script>
 
 <svelte:head>
@@ -7,7 +8,9 @@
 </svelte:head>
 
 <article class="article max-w-100">
-    <h2>Content Libraries</h2>
+    <h2>
+        <BreadcrumbLinks items={[{text: 'Content Library'}]} />
+    </h2>
 
     <div class="grid">
         <div class="col-12 col-6-m col-4-l mb-small">

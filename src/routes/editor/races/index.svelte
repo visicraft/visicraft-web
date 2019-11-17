@@ -2,6 +2,7 @@
     import {COLUMN_SIZES} from "../../../components/elements/buttons/ColumnButtons.svelte";
     import ContentCard from "../../../components/elements/cards/ContentCard.svelte";
 
+    import BreadcrumbLinks from "../../../components/patterns/breadcrumb/BreadcrumbLinks.svelte";
     import SearchBar from "../../../components/patterns/searchgrid/SearchBar.svelte";
     import SearchGrid from "../../../components/patterns/searchgrid/SearchGrid.svelte";
 
@@ -27,7 +28,9 @@
 </svelte:head>
 
 <article class="article max-w-100">
-    <h2>Races Library</h2>
+    <h2>
+        <BreadcrumbLinks items={[{href: '/editor', text: 'Content Library'}, {text: 'Races'}]} />
+    </h2>
 
     <SearchBar
         bind:column_size={$column_size}
@@ -39,7 +42,7 @@
         <ContentCard
             class="w-100"
             contributors={item.contributors.join(' ')}
-            href="/editor/races/{item.get_short_identifier()}"
+            href="/editor/races/{item.get_short_identifier()}/{item.get_title_slug()}"
             title={item.title}
             type={item.content_type}
             indicator />

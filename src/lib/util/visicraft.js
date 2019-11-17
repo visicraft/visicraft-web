@@ -27,6 +27,7 @@ export function get_client() {
  */
 export async function initialize_client() {
     if (!process.browser) return new Promise(() => {});
+    if (window._vc_client) return window._vc_client;
 
     const client = new visicraft.VisicraftClient(APPLICATION_CONFIGURATION.client);
     await client.open_datastore();
@@ -36,7 +37,7 @@ export async function initialize_client() {
 }
 
 if (typeof window !== "undefined") {
-    window._debug_init_dummy = () => {
+    window._debug_init_dummy = async () => {
         const client = get_client();
         const {races} = client.datastore;
 
@@ -120,6 +121,7 @@ if (typeof window !== "undefined") {
             }
         ];
 
-        races.bulkInsert(data);
+        const _races = (await races.bulkInsert(data)).success;
+        console.log("done bulk", {_races});
     };
 }
