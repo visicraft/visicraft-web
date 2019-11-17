@@ -1,5 +1,6 @@
 import resolve from "rollup-plugin-node-resolve";
 import replace from "rollup-plugin-replace";
+import json from "rollup-plugin-json";
 import commonjs from "rollup-plugin-commonjs";
 import svelte from "rollup-plugin-svelte";
 import babel from "rollup-plugin-babel";
@@ -24,6 +25,7 @@ export default {
                 "process.browser": true,
                 "process.env.NODE_ENV": JSON.stringify(mode)
             }),
+            json(),
             svelte({
                 dev,
                 hydratable: true,
@@ -74,6 +76,7 @@ export default {
                 "process.browser": false,
                 "process.env.NODE_ENV": JSON.stringify(mode)
             }),
+            json(),
             svelte({
                 generate: "ssr",
                 dev

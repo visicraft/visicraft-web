@@ -1,5 +1,7 @@
 import * as sapper from "@sapper/app";
 
+import APPLICATION_CONFIGURATION from "../../../config/application.json";
+
 /**
  * Checks if the `visicraft.VisicraftClient` instance singleton is available, if not, redirects to splash screen
  * @param {*} url
@@ -26,12 +28,7 @@ export function get_client() {
 export async function initialize_client() {
     if (!process.browser) return new Promise(() => {});
 
-    const client = new visicraft.VisicraftClient({
-        datastore: {
-            adapter: "memory"
-        }
-    });
-
+    const client = new visicraft.VisicraftClient(APPLICATION_CONFIGURATION.client);
     await client.open_datastore();
 
     window._vc_client = client;

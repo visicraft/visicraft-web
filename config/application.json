@@ -1,0 +1,8 @@
+{
+    "client": {
+        "datastore": {
+            "adapter": "memory",
+            "namespace": "visicraft_v1"
+        }
+    }
+}

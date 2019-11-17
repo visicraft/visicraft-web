@@ -9,20 +9,30 @@
     import {get_query_string} from "../../lib/util/browser";
     import {initialize_client} from "../../lib/util/visicraft";
 
-    const NAVIGATION_MAIN_LINKS = [
-        {text: "Home", href: "/editor"},
-        {text: "Create", href: "/editor/create"},
-        {text: "Import", href: "/editor/import"}
-    ];
-
-    const NAVIGATION_RACES_LINKS = [{text: "Library", href: "/editor/races"}];
-
-    const NAVIGATION_SHOPITEMS_LINKS = [{text: "Library", href: "/editor/shopitems"}];
-
-    const NAVIGATION_POWERS_LINKS = [{text: "Library", href: "/editor/powers"}];
-
     let _client;
     const is_browser = process.browser;
+    const {page} = sapper.stores();
+
+    let NAVIGATION_MAIN_LINKS = [];
+    let NAVIGATION_RACES_LINKS = [];
+    let NAVIGATION_POWERS_LINKS = [];
+    let NAVIGATION_SHOPITEMS_LINKS = [];
+
+    function check_active(path, link) {
+        return {...link, active: path === link.href};
+    }
+
+    $: NAVIGATION_RACES_LINKS = [check_active($page.path, {text: "Library", href: "/editor/races"})];
+    $: NAVIGATION_SHOPITEMS_LINKS = [check_active($page.path, {text: "Library", href: "/editor/shopitems"})];
+    $: NAVIGATION_POWERS_LINKS = [check_active($page.path, {text: "Library", href: "/editor/powers"})];
+
+    $: {
+        NAVIGATION_MAIN_LINKS = [
+            check_active($page.path, {text: "Home", href: "/editor"}),
+            check_active($page.path, {text: "Create", href: "/editor/create"}),
+            check_active($page.path, {text: "Import", href: "/editor/import"})
+        ];
+    }
 
     onMount(async () => {
         if (!window._vc_client) {
