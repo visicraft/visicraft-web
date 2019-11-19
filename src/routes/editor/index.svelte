@@ -1,5 +1,5 @@
 <script>
-    import IndicatorCard from "../../components/elements/cards/IndicatorCard.svelte";
+    import ContentButton from "../../components/elements/buttons/ContentButton.svelte";
     import BreadcrumbLinks from "../../components/patterns/breadcrumb/BreadcrumbLinks.svelte";
 </script>
 
@@ -14,15 +14,15 @@
 
     <div class="grid">
         <div class="col-12 col-6-m col-4-l mb-small">
-            <IndicatorCard type="TYPE_POWER" href="/editor/powers" icon plural />
+            <ContentButton type="TYPE_POWER" href="/editor/powers" fluid icon plural />
         </div>
 
         <div class="col-12 col-6-m col-4-l mb-small">
-            <IndicatorCard type="TYPE_RACE" href="/editor/races" icon plural />
+            <ContentButton type="TYPE_RACE" href="/editor/races" fluid icon plural />
         </div>
 
         <div class="col-12 col-6-m col-4-l mb-small">
-            <IndicatorCard type="TYPE_SHOPITEM" href="/editor/shopitems" icon plural />
+            <ContentButton type="TYPE_SHOPITEM" href="/editor/shopitems" fluid icon plural />
         </div>
     </div>
 </article>

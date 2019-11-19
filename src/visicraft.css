@@ -182,29 +182,13 @@ a.link-fade {
 
 a.link-fade:active,
 a.link-fade:hover {
-    filter: saturate(1) opacity(100%);
+    filter: brightness(1);
     transition: filter 0.15s;
 }
 
 a.link-fade:active,
 a.link-fade:hover {
-    filter: saturate(0.85) opacity(30%);
-}
-
-/**
- * .vc-symbol-*
- *     Content Type symbols
- */
-
-*[class*="vc-symbol-"] {
-    display: inline-block;
-
-    font-style: normal;
-    font-weight: bold;
-}
-
-.vc-symbol-race {
-    transform: rotate(-90deg);
+    filter: brightness(0.9);
 }
 
 /**

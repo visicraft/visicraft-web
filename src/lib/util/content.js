@@ -26,30 +26,21 @@ export const CONTENT_PLURAL_NAMES = {
 };
 
 /**
+ * Represents the symbol classes associated with each content type
+ */
+export const CONTENT_CLASSES = {
+    [CONTENT_TYPES.races]: "race",
+    [CONTENT_TYPES.powers]: "power",
+    [CONTENT_TYPES.shopitems]: "shopitem"
+};
+
+/**
  * Represents the color classes associated with each content type
  */
 export const CONTENT_COLOR_CLASSES = {
     [CONTENT_TYPES.races]: "primary",
     [CONTENT_TYPES.powers]: "danger",
     [CONTENT_TYPES.shopitems]: "light"
-};
-
-/**
- * Represents the symbol classes associated with each content type
- */
-export const CONTENT_SYMBOL_CLASSES = {
-    [CONTENT_TYPES.races]: "vc-symbol-race",
-    [CONTENT_TYPES.powers]: null,
-    [CONTENT_TYPES.shopitems]: null
-};
-
-/**
- * Represents the symbol HTML Entities associated with each content type
- */
-export const CONTENT_SYMBOL_ENTITIES = {
-    [CONTENT_TYPES.races]: "&ltcir;",
-    [CONTENT_TYPES.powers]: "&gtcc;",
-    [CONTENT_TYPES.shopitems]: "&ccupssm;"
 };
 
 /**
@@ -64,20 +55,10 @@ export function get_content_name(type, plural = false) {
 }
 
 /**
- * Returns the CSS color class associated with the content type, throwing an exception missing content types
- */
-export function get_content_color_class(type) {
-    const color = CONTENT_COLOR_CLASSES[type];
-
-    if (color) return color;
-    throw new Error(`bad dispatch to 'get_content_color_class' (content type '${type}' not supported)`);
-}
-
-/**
  * Returns the CSS shape class associated with the content type, throwing an exception missing content types
  */
-export function get_content_symbol_class(type) {
-    const _class = CONTENT_SYMBOL_CLASSES[type];
+export function get_content_class(type) {
+    const _class = CONTENT_CLASSES[type];
 
     if (_class === null) return "";
     if (_class) return _class;
@@ -85,11 +66,11 @@ export function get_content_symbol_class(type) {
 }
 
 /**
- * Returns the CSS shape class associated with the content type, throwing an exception missing content types
+ * Returns the CSS color class associated with the content type, throwing an exception missing content types
  */
-export function get_content_symbol_entity(type) {
-    const entity = CONTENT_SYMBOL_ENTITIES[type];
+export function get_content_color_class(type) {
+    const color = CONTENT_COLOR_CLASSES[type];
 
-    if (entity) return entity;
-    throw new Error(`bad dispatch to 'get_content_symbol_entity' (content type '${type}' not supported)`);
+    if (color) return color;
+    throw new Error(`bad dispatch to 'get_content_color_class' (content type '${type}' not supported)`);
 }
