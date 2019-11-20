@@ -1,3 +1,10 @@
+<script context="module">
+    import {preload_browser} from "../../lib/util/browser";
+    import {preload_client} from "../../lib/util/visicraft";
+
+    export const preload = preload_browser(preload_client());
+</script>
+
 <script>
     import ContentButton from "../../components/elements/buttons/ContentButton.svelte";
     import BreadcrumbLinks from "../../components/patterns/breadcrumb/BreadcrumbLinks.svelte";

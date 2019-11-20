@@ -3,18 +3,14 @@ import * as sapper from "@sapper/app";
 import APPLICATION_CONFIGURATION from "../../../config/application.json";
 
 /**
- * Checks if the `visicraft.VisicraftClient` instance singleton is available, if not, redirects to splash screen
- * @param {*} url
+ * Returns if the `visicraft.VisicraftClient` singleton is available, always false on server
  */
-export function check_client(url = null) {
-    if (!process.browser || typeof window._vc_client !== "undefined") return;
-
-    if (!url) url = `${location.pathname}${location.search}`;
-    sapper.goto(`/editor?ret=${url}`);
+export function has_client() {
+    return typeof window !== "undefined" && typeof window._vc_client !== "undefined";
 }
 
 /**
- * Returns the `visicraft.VisicraftClient` instance singleton, if available, otherwise exception thrown
+ * Returns the `visicraft.VisicraftClient` singleton, if available, otherwise exception thrown
  */
 export function get_client() {
     if (window._vc_client) return window._vc_client;
@@ -26,7 +22,8 @@ export function get_client() {
  * Initializes a new `visicraft.VisicraftClient` singleton, with the build-time configuration
  */
 export async function initialize_client() {
-    if (!process.browser) return new Promise(() => {});
+    // Server-side Components should wait infinitely
+    if (typeof window === "undefined") return new Promise(() => {});
     if (window._vc_client) return window._vc_client;
 
     const client = new visicraft.VisicraftClient(APPLICATION_CONFIGURATION.client);
@@ -34,6 +31,25 @@ export async function initialize_client() {
 
     window._vc_client = client;
     return client;
+}
+
+/**
+ * Returns a Sapper preload middleware, that redirects the end-user to the initalization
+ * splash screen if no `visicraft.VisicraftClient` singleton was previously available
+ * @param {*} next
+ */
+export function preload_client(next) {
+    return function(page, session) {
+        if (typeof window !== "undefined" && !has_client()) {
+            const url = `/splash/editor?ret=${location.pathname}${location.search}`;
+            sapper.goto(url, {replaceState: true});
+
+            return null;
+        }
+
+        if (next) next.apply(this, [page, session]);
+        return {};
+    };
 }
 
 if (typeof window !== "undefined") {

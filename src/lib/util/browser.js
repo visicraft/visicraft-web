@@ -10,6 +10,19 @@ export function get_query_string() {
 }
 
 /**
+ * Returns Sapper preload middleware, skipping the passed in preload function if not running on the Browser
+ * @param {*} next
+ */
+export function preload_browser(next) {
+    return function(page, session) {
+        if (typeof window === "undefined") return null;
+
+        if (next) return next.apply(this, [page, session]);
+        return {};
+    };
+}
+
+/**
  * Updates the current URL query string of the Browser, with the given object<string, string>
  * @param {*} query_params
  */

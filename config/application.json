@@ -1,7 +1,7 @@
 {
     "client": {
         "datastore": {
-            "adapter": "memory",
+            "adapter": "idb",
             "namespace": "visicraft_v1"
         }
     }

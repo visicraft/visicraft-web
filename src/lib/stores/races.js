@@ -52,20 +52,39 @@ export function get_race(identifier) {
     return store;
 }
 
+export function get_race_(identifier) {
+    if (typeof window === "undefined" || !identifier) readable({preloading: true});
+
+    const client = get_client();
+    const {races} = client.datastore;
+
+    const query = races.query_race(identifier);
+    const store = writable({preloading: true});
+
+    query.$.subscribe((value) => {
+        store.set({preloading: false, race: value});
+    });
+
+    return store;
+}
+
 /**
  * Returns a readable Svelte Store, with an automatically updating view of the stored Races
  * @param {*} options
  */
 export function get_races(options) {
-    if (!process.browser) return readable([]);
+    if (typeof window === "undefined") return readable({preloading: true});
 
-    return readable([], (set) => {
+    return readable({preloading: true}, (set) => {
         const client = get_client();
         const {races} = client.datastore;
         const query = races.query_races(options);
 
         query.$.subscribe((value) => {
-            set(value);
+            set({
+                preloading: false,
+                races: value
+            });
         });
     });
 }

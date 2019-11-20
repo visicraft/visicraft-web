@@ -107,7 +107,7 @@
 
     .vc-content-button:active > :global(.vc-content-button-icon),
     .vc-content-button:hover > :global(.vc-content-button-icon) {
-        opacity: 0.25;
+        opacity: 0.3;
     }
 
     .vc-content-button-text {
