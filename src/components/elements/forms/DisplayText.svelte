@@ -54,7 +54,7 @@
 </style>
 
 <div class="d-inline-block {_class}" class:d-none={!editable} {style}>
-    <div class="fm fm-text d-inline-block {_class}" style="font-size:inherit;">
+    <div class="fm fm-text d-inline-block" style="font-size:inherit;">
         <input {name} bind:value={_value} />
     </div>
 

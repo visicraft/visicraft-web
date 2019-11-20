@@ -1,4 +1,6 @@
 <script>
+    import {setContext} from "svelte";
+    import {writable} from "svelte/store";
     import {stores} from "@sapper/app";
 
     import SpinnerOverlay from "../../components/elements/overlays/SpinnerOverlay.svelte";
@@ -12,6 +14,7 @@
 
     const is_browser = process.browser;
     const {page, preloading} = stores();
+    const layout_preloading = writable(false);
 
     let NAVIGATION_MAIN_LINKS = [];
     let NAVIGATION_RACES_LINKS = [];
@@ -21,6 +24,8 @@
     function check_active(path, link) {
         return {...link, active: path === link.href};
     }
+
+    setContext("preloading", layout_preloading);
 
     $: NAVIGATION_RACES_LINKS = [check_active($page.path, {text: "Library", href: "/editor/races"})];
     $: NAVIGATION_SHOPITEMS_LINKS = [check_active($page.path, {text: "Library", href: "/editor/shopitems"})];
@@ -60,7 +65,7 @@
                 technically $preloading should be `true`, but is instead `null` by default interestingly
                 enough. it sets to `false` whenever `preload` is finished though, so effectively the same
         -->
-        <SpinnerOverlay active={$preloading === null}>
+        <SpinnerOverlay active={$preloading === null || $layout_preloading}>
             {#if is_browser}
                 <slot />
             {/if}

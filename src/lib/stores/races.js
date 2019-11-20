@@ -53,7 +53,7 @@ export function get_race(identifier) {
 }
 
 export function get_race_(identifier) {
-    if (typeof window === "undefined" || !identifier) readable({preloading: true});
+    if (typeof window === "undefined" || !identifier) writable({preloading: true});
 
     const client = get_client();
     const {races} = client.datastore;

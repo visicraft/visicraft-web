@@ -25,7 +25,7 @@
     const sorting_direction = bind_query_parameter("sorting_direction", SORTING_DIRECTIONS.ascending);
     const sorting_mode = bind_query_parameter("sorting_mode", SORTING_MODES.recent);
 
-    $: races = get_races({filter: $filter, sorting_direction: $sorting_direction, sorting_mode: $sorting_mode});
+    $: query = get_races({filter: $filter, sorting_direction: $sorting_direction, sorting_mode: $sorting_mode});
 </script>
 
 <svelte:head>
@@ -43,12 +43,12 @@
         bind:sorting_direction={$sorting_direction}
         bind:sorting_mode={$sorting_mode} />
 
-    {#if $races.preloading}
+    {#if $query.preloading}
         <div class="d-flex jc-center w-100">
             <SpinnerLoader />
         </div>
     {:else}
-        <SearchGrid column_size={$column_size} items={$races.races} let:item>
+        <SearchGrid column_size={$column_size} items={$query.races} let:item>
             <ContentCard
                 class="w-100"
                 contributors={item.contributors.join(' ')}
